@@ -10,12 +10,12 @@ Este caso de estudio resume la pregunta, el protocolo y los hallazgos principale
 
 La emisión diaria a las 18:00 de Chile continental es una convención experimental. Se pronostican los períodos que la fuente asigna al día calendario siguiente. Cada período se identifica por la fecha y el índice horario original; no se transforma a hora civil ni se rellenan períodos en los cambios de hora.
 
-Para el escenario principal, solo se admite historial de demanda con una fecha anterior a la fecha de emisión menos 60 días calendario. El corte conservador limita el uso de valores recientes cuya disponibilidad histórica no se puede reconstruir. La fuente actual tampoco acredita qué versión exacta de cada valor se habría conocido en cada emisión.
+Para el escenario principal, `E` es la fecha local de emisión y `D` la fecha objetivo: `E = D − 1`. Solo se admite historial de demanda con `fecha_observacion < E − 60 días calendario`. El corte conservador limita el uso de valores recientes cuya disponibilidad histórica no se puede reconstruir. La fuente actual tampoco acredita qué versión exacta de cada valor se habría conocido en cada emisión.
 
 ```mermaid
 flowchart LR
-    A[Emisión convencional<br/>18:00, día D] --> B[Filtrar historial<br/>fecha &lt; D − 60 días]
-    B --> C[Calcular pronóstico<br/>para el día calendario D+1]
+    A[Emisión convencional<br/>E = D−1, 18:00] --> B[Filtrar historial<br/>fecha &lt; E − 60 días]
+    B --> C[Pronosticar el día objetivo<br/>D = E+1]
     C --> D[Comparar ex post<br/>con observación archivada]
     D --> E[Resumir errores<br/>MAE · RMSE · sesgo]
 ```
