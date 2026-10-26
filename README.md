@@ -29,6 +29,8 @@ El **benchmark** estima cada período del día siguiente con el promedio histór
 
 El trabajo incluyó exploración y auditoría de series horarias de 2024 y 2025, validación cronológica, comparación de métodos, análisis de errores y una demostración interactiva. La demanda utilizada fue retrospectiva; no se reconstruyeron las versiones que habrían estado disponibles al momento histórico de cada emisión. Por eso, la evaluación no equivale a una simulación operacional.
 
+Lee el [caso de estudio](docs/caso-de-estudio.md) para ver el protocolo, la regla de feriados, el flujo de investigación y los límites en un solo recorrido.
+
 ## Demostración visual
 
 La aplicación pública usa **datos 100 % sintéticos** generados en memoria. La siguiente ilustración estática representa una vista de demostración; no es una captura de la evaluación real y sus curvas, fecha y métricas no corresponden a observaciones del CEN.
@@ -64,6 +66,7 @@ uv run --locked --no-sync python scripts/verify_public_tree.py
 
 ## Documentación
 
+- [Caso de estudio](docs/caso-de-estudio.md)
 - [Protocolo experimental](docs/protocol/README.md)
 - [Código fuente](src/)
 - [Dashboard y ejecución local](dashboard/README.md)
