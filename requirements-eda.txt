@@ -1,0 +1,3 @@
+# Instalación de dependencias para notebook y análisis exploratorio.
+# Ejecutar desde la raíz del repositorio.
+-e .[eda]

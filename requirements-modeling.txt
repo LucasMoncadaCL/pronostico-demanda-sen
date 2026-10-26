@@ -1,0 +1,3 @@
+# Instalación de dependencias para EDA y experimentos de modelado.
+# Ejecutar desde la raíz del repositorio.
+-e .[modeling]

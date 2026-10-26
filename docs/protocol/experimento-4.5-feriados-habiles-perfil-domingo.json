@@ -1,0 +1,51 @@
+{
+  "experiment": "4.5",
+  "status": "frozen_before_execution",
+  "scope": "2024 development window only; no 2025 data or scores",
+  "hypothesis": "For a national holiday that falls Monday through Friday, the historical Sunday-by-period profile may produce a lower forecast error than the ordinary weekday-by-period profile.",
+  "primary_selection_metric": "global hourly MAE across all 5,016 common development targets",
+  "secondary_metrics": [
+    "MAE on the nine weekday national holidays",
+    "signed bias on those holidays",
+    "per-holiday-date error",
+    "support and fallback level for each prediction",
+    "unchanged-prediction check on all non-holiday targets"
+  ],
+  "fixed_design": {
+    "target_window": {
+      "start_inclusive": "2024-04-06",
+      "end_inclusive": "2024-10-31"
+    },
+    "issue_time": "18:00 America/Santiago on the prior calendar day",
+    "information_cut": "observation_date < issue_date - 60 calendar days; strict date comparison",
+    "benchmark": "Existing mean by target weekday x source period index, minimum support n>=5, fallback hierarchy unchanged",
+    "candidate_rule": "On an included national holiday falling Monday-Friday, replace only that target's predicted mean with the historical Sunday x same source period index mean; calculate from that issue's eligible history.",
+    "candidate_fallback": "Apply the existing support threshold and fallback order by calling the existing benchmark function with weekday=Sunday (Monday=0 ... Sunday=6) and the original period index. If there is no support at any fallback level, do not fabricate a value; mark the target unsupported and fail the experiment coverage gate.",
+    "non_holiday_targets": "Must retain exactly the existing benchmark prediction.",
+    "weekend_holidays_and_election_events": "Do not modify in this experiment.",
+    "primary_decision_rule": "Compare global MAE on identical targets; do not select by holiday-only MAE.",
+    "inference_status": "Development comparison only; the hypothesis was formulated after inspecting 2024 errors, so results are not an independent confirmation."
+  },
+  "calendar_definition": {
+    "source": "Gob.cl, ¿Cuáles son los feriados del 2024? Conoce los irrenunciables",
+    "source_url": "https://www.gob.cl/noticias/feriado-2024-chile-dias-festivos-irrenunciables/",
+    "selection_rule": "From the published national 2024 holiday list, include only dates in the fixed development window that fall Monday-Friday. Exclude election days and region-specific holidays. Do not select dates based on observed errors.",
+    "included_dates": [
+      {"date": "2024-05-01", "name": "Día del Trabajador"},
+      {"date": "2024-05-21", "name": "Día de las Glorias Navales"},
+      {"date": "2024-06-20", "name": "Día Nacional de los Pueblos Indígenas"},
+      {"date": "2024-07-16", "name": "Día de la Virgen del Carmen"},
+      {"date": "2024-08-15", "name": "Asunción de la Virgen"},
+      {"date": "2024-09-18", "name": "Independencia Nacional"},
+      {"date": "2024-09-19", "name": "Día de las Glorias del Ejército"},
+      {"date": "2024-09-20", "name": "Feriado adicional de Fiestas Patrias"},
+      {"date": "2024-10-31", "name": "Día de las Iglesias Evangélicas y Protestantes"}
+    ],
+    "excluded_events": [
+      {"date": "2024-06-09", "reason": "Sunday election; not a weekday holiday treatment."},
+      {"date": "2024-10-26", "reason": "Saturday voting day; not a weekday national holiday."},
+      {"date": "2024-10-27", "reason": "Sunday election; not a weekday holiday treatment."}
+    ]
+  },
+  "protocol_v1_2_modified": false
+}

@@ -1,0 +1,3 @@
+# Dependencias opcionales para el explorador local de resultados archivados.
+# Ejecutar desde la raíz del repositorio.
+-e .[dashboard]

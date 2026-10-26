@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.DS_Store
+Thumbs.db
+archive/zip-snapshots/
+superpowers/docs/
+
+# Datos del CEN y artefactos derivados no forman parte de la distribución pública.
+/data/*
+!/data/README.md

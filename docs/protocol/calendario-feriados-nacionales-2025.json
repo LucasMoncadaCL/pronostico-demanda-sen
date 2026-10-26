@@ -1,0 +1,70 @@
+{
+  "calendar_year": 2025,
+  "definition": "Nationally applicable statutory holidays in Chile. Region-specific holidays and election events are recorded separately and are not treated as national weekday holidays by the candidate.",
+  "sources": [
+    {
+      "publisher": "Gob.cl",
+      "title": "¿Qué días feriados hay en 2025? Revisa festivos irrenunciables y otros",
+      "url": "https://www.gob.cl/noticias/calendario-feriados-2025-festivos-irrenunciables-legales/",
+      "publication_date": "2024-12-17",
+      "publication_date_evidence_url": "https://www.gob.cl/noticias/?p=110"
+    },
+    {
+      "publisher": "Servicio Electoral de Chile",
+      "title": "Todo lo que debes saber sobre la Segunda Votación Presidencial 2025",
+      "url": "https://www.servel.cl/Ch/app/segunda-votacion-presidencial-chile/noticias/",
+      "use": "Classifies a Sunday election day; excluded from candidate treatment."
+    },
+    {
+      "publisher": "Biblioteca del Congreso Nacional de Chile",
+      "title": "Ley 20.663: feriado del 7 de junio para la Región de Arica y Parinacota",
+      "url": "https://www.bcn.cl/leychile/navegar?idLey=20663"
+    },
+    {
+      "publisher": "Biblioteca del Congreso Nacional de Chile",
+      "title": "Ley 20.768: feriado del 20 de agosto para Chillán y Chillán Viejo",
+      "url": "https://www.bcn.cl/leychile/Navegar?idNorma=1065534&tipoVersion=0"
+    }
+  ],
+  "national_holidays": [
+    {"date": "2025-01-01", "name": "Año Nuevo", "class": "national_holiday"},
+    {"date": "2025-04-18", "name": "Viernes Santo", "class": "national_holiday"},
+    {"date": "2025-04-19", "name": "Sábado Santo", "class": "national_holiday"},
+    {"date": "2025-05-01", "name": "Día Nacional del Trabajo", "class": "national_holiday"},
+    {"date": "2025-05-21", "name": "Día de las Glorias Navales", "class": "national_holiday"},
+    {"date": "2025-06-20", "name": "Día Nacional de los Pueblos Indígenas", "class": "national_holiday"},
+    {"date": "2025-06-29", "name": "San Pedro y San Pablo / Primarias Presidenciales y Parlamentarias", "class": "election_day"},
+    {"date": "2025-07-16", "name": "Día de la Virgen del Carmen", "class": "national_holiday"},
+    {"date": "2025-08-15", "name": "Asunción de la Virgen", "class": "national_holiday"},
+    {"date": "2025-09-18", "name": "Independencia Nacional", "class": "national_holiday"},
+    {"date": "2025-09-19", "name": "Día de las Glorias del Ejército", "class": "national_holiday"},
+    {"date": "2025-10-12", "name": "Encuentro de Dos Mundos", "class": "national_holiday"},
+    {"date": "2025-10-31", "name": "Día de las Iglesias Evangélicas y Protestantes", "class": "national_holiday"},
+    {"date": "2025-11-01", "name": "Día de Todos los Santos", "class": "national_holiday"},
+    {"date": "2025-11-16", "name": "Elecciones Presidenciales y Parlamentarias", "class": "election_day"},
+    {"date": "2025-12-08", "name": "Inmaculada Concepción", "class": "national_holiday"},
+    {"date": "2025-12-14", "name": "Segunda Votación Presidencial", "class": "election_day"},
+    {"date": "2025-12-25", "name": "Navidad", "class": "national_holiday"}
+  ],
+  "regional_holidays_excluded": [
+    {"date": "2025-06-07", "name": "Asalto y Toma del Morro de Arica", "territory": "Región de Arica y Parinacota", "law": "Ley 20.663", "reason": "No es feriado de alcance nacional; la variable objetivo es demanda agregada del SEN."},
+    {"date": "2025-08-20", "name": "Natalicio de Bernardo O'Higgins", "territory": "Comunas de Chillán y Chillán Viejo", "law": "Ley 20.768", "reason": "No es feriado de alcance nacional; la variable objetivo es demanda agregada del SEN."}
+  ],
+  "included_candidate_dates": [
+    "2025-01-01",
+    "2025-04-18",
+    "2025-05-01",
+    "2025-05-21",
+    "2025-06-20",
+    "2025-07-16",
+    "2025-08-15",
+    "2025-09-18",
+    "2025-09-19",
+    "2025-10-31",
+    "2025-12-08",
+    "2025-12-25"
+  ],
+  "mechanical_selection_rule": "Included candidate dates are exactly national_holidays with class national_holiday that fall Monday through Friday. Election days, weekend holidays, and regional holidays are excluded.",
+  "selection_count": 12,
+  "expected_target_periods_affected": 288
+}
