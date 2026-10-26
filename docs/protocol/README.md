@@ -4,4 +4,4 @@
 - [Especificación del experimento de feriados](experimento-4.5-feriados-habiles-perfil-domingo.md): regla de sustitución evaluada y alcance de la conclusión.
 - [Calendario nacional 2025](calendario-feriados-nacionales-2025.json): fechas y procedencia en fuentes oficiales indicadas dentro del archivo.
 
-Los archivos de datos, resultados por observación, manifiestos de extracción y verificaciones de los resultados completos se conservan en el archivo científico privado y no forman parte de esta distribución.
+Conservo los archivos de datos, los resultados por observación, los manifiestos de extracción y las verificaciones completas en el archivo científico privado; no forman parte de esta distribución.

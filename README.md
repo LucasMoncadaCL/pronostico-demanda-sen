@@ -2,7 +2,7 @@
 
 **Python · Series temporales · Validación cronológica · scikit-learn · Streamlit · Plotly**
 
-Proyecto aplicado de Data Science para estudiar el pronóstico horario de demanda sistémica agregada del Sistema Eléctrico Nacional (SEN). La pregunta fue si una regla de calendario sencilla podía mejorar un benchmark basado en perfiles históricos por día de semana e índice de período.
+Desarrollé este proyecto para estudiar el pronóstico horario de demanda sistémica agregada del Sistema Eléctrico Nacional (SEN). La pregunta central fue si una regla sencilla de calendario podía mejorar un benchmark basado en perfiles históricos por día de semana e índice de período.
 
 ## Resultado principal
 
@@ -12,28 +12,28 @@ En la evaluación retrospectiva de 2025, la extensión de feriados redujo el MAE
 | --- | ---: | ---: |
 | Benchmark semanal | 488,96 | 8.760 períodos |
 | Benchmark + perfil de feriados | 479,91 | 8.760 períodos |
-| Cambio observado | −9,05 (−1,85 %) | La regla modificó 288 períodos |
+| Cambio observado | −9,05 (−1,85 %) | Se trataron 288 períodos |
 
-Estas cifras son resúmenes agregados derivados de una evaluación histórica. No se distribuyen aquí las observaciones del CEN ni los pares de demanda observada y predicción. La evaluación no fue completamente ciega: el resultado del benchmark de 2025 ya se conocía antes de evaluar la extensión.
+Estas cifras resumen la evaluación histórica. No incluyo las observaciones del CEN ni los pares de demanda observada y predicción. La evaluación no fue completamente ciega: ya conocía el resultado del benchmark de 2025 antes de evaluar la extensión.
 
 ## Hallazgos principales
 
-- **La regla añadida fue concreta y auditable:** para feriados nacionales de lunes a viernes, sustituyó el perfil habitual por el perfil histórico de domingo del mismo índice de período. Los demás pronósticos permanecieron iguales.
-- **El beneficio fue desigual:** nueve de los doce feriados tratados mejoraron y tres empeoraron. La mejora observada en 2025 no demuestra estabilidad entre años.
-- **La complejidad no garantizó menor error:** las especificaciones Ridge y de árboles potenciados probadas durante el desarrollo de 2024 no superaron al benchmark en esa ventana.
-- **Los eventos extraordinarios siguen siendo una limitación:** la regla de feriados no cambia los pronósticos de perturbaciones de la red. El resultado no demuestra utilidad operacional.
+- **Probé una regla concreta y auditable:** en feriados nacionales de lunes a viernes usé el perfil histórico de domingo del mismo índice de período. Los demás pronósticos quedaron intactos.
+- **El beneficio fue desigual:** nueve de los doce feriados tratados mejoraron y tres empeoraron. Este resultado de 2025 no demuestra estabilidad entre años.
+- **Las especificaciones más complejas no mejoraron la referencia:** Ridge y árboles potenciados, que probé durante el desarrollo de 2024, no superaron al benchmark en esa ventana.
+- **La regla tiene límites ante eventos extraordinarios:** no cambia los pronósticos durante perturbaciones de la red ni demuestra utilidad operacional.
 
 ## Cómo funciona la comparación
 
-El **benchmark** estima cada período del día siguiente con el promedio histórico de la combinación correspondiente de día de semana e índice de período. La **extensión** aplica esa misma referencia y, únicamente en feriados nacionales que caen entre lunes y viernes, utiliza el perfil promedio de domingo para el índice correspondiente. Ambas reglas se compararon sobre los mismos objetivos.
+Definí el **benchmark** como el promedio histórico de cada combinación de día de semana e índice de período. La **extensión** usa esa misma referencia, salvo en feriados nacionales de lunes a viernes: ahí sustituye el perfil por el promedio de domingo del mismo índice. Comparé ambas reglas sobre exactamente los mismos objetivos.
 
-El trabajo incluyó exploración y auditoría de series horarias de 2024 y 2025, validación cronológica, comparación de métodos, análisis de errores y una demostración interactiva. La demanda utilizada fue retrospectiva; no se reconstruyeron las versiones que habrían estado disponibles al momento histórico de cada emisión. Por eso, la evaluación no equivale a una simulación operacional.
+Audité las series horarias de 2024 y 2025, diseñé una validación cronológica, comparé métodos y analicé sus errores. También preparé una demostración interactiva. Como usé demanda descargada retrospectivamente, no pude reconstruir qué versiones habrían estado disponibles en cada emisión. Por eso, esta evaluación no equivale a una simulación operacional.
 
-Lee el [caso de estudio](docs/caso-de-estudio.md) para ver el protocolo, la regla de feriados, el flujo de investigación y los límites en un solo recorrido.
+En el [caso de estudio](docs/caso-de-estudio.md) explico el protocolo, la regla de feriados, el flujo de investigación y sus límites.
 
 ## Demostración visual
 
-La aplicación pública usa **datos 100 % sintéticos** generados en memoria. La siguiente ilustración estática representa una vista de demostración; no es una captura de la evaluación real y sus curvas, fecha y métricas no corresponden a observaciones del CEN.
+Preparé la aplicación pública con **datos 100 % sintéticos** generados en memoria. La ilustración estática muestra esa demostración; no es una captura de la evaluación real y sus curvas, fecha y métricas no corresponden a observaciones del CEN.
 
 ![Vista ilustrativa de la aplicación pública con datos sintéticos](docs/assets/dashboard-demostracion-sintetica.svg)
 
@@ -51,11 +51,11 @@ Requiere Python 3.11 o superior y [uv](https://docs.astral.sh/uv/).
 - **Análisis y modelos:** Python, pandas, NumPy y scikit-learn.
 - **Visualización interactiva:** Streamlit y Plotly.
 - **Calidad:** unittest, Ruff y GitHub Actions.
-- **Pruebas públicas:** usan ejemplos sintéticos y verifican que el paquete público no incorpore los artefactos históricos reservados.
+- **Pruebas públicas:** escribí pruebas con ejemplos sintéticos para verificar que el paquete no incorpore artefactos históricos reservados.
 
-La aplicación no accede a la API del CEN ni a archivos privados. Los scripts científicos se publican para inspección metodológica; algunos necesitan artefactos privados que no forman parte de esta distribución. La evaluación numérica histórica está archivada y no debe relanzarse como una nueva corrida desde este paquete. La reproducción de sus métricas requiere acceso legítimo a los datos de origen.
+La aplicación pública no accede a la API del CEN ni a archivos privados. Dejé los scripts científicos para inspeccionar el método; algunos requieren artefactos del archivo científico privado y no pueden ejecutarse de extremo a extremo con esta copia. La evaluación numérica histórica no debe relanzarse como una nueva corrida desde este paquete. Su reproducción requiere acceso legítimo a los datos de origen.
 
-La integración continua ejecuta las comprobaciones públicas en cada `push` y `pull request`:
+La integración continua ejecuta estas comprobaciones públicas en cada `push` y `pull request`:
 
 ```powershell
 uv sync --locked --extra dashboard --extra modeling --extra dev
@@ -76,8 +76,8 @@ uv run --locked --no-sync python scripts/verify_public_tree.py
 
 ## Fuentes, datos y licencias
 
-La fuente de demanda fue el [Coordinador Eléctrico Nacional](https://www.coordinador.cl/). Los datos originales y los materiales de terceros están excluidos de las licencias de este proyecto; su publicación no implica que sean de dominio público ni confirma derechos de redistribución. Las métricas históricas resumidas se presentan con atribución, sin que ello resuelva la incertidumbre sobre las condiciones aplicables a los datos fuente.
+Usé como fuente de demanda al [Coordinador Eléctrico Nacional](https://www.coordinador.cl/). Las licencias de mi código y documentación no cubren los datos originales ni materiales de terceros; el acceso público no implica que sean de dominio público ni confirma derechos de redistribución. Las métricas resumidas incluyen atribución, aunque eso no resuelve la incertidumbre sobre las condiciones aplicables a los datos fuente.
 
 El código original se distribuye bajo [MIT](LICENSE) y la documentación original bajo [CC BY 4.0](LICENSE-DOCS.md). Esas licencias no cubren datos ni materiales de terceros.
 
-Este proyecto es independiente y no representa una herramienta operacional ni una publicación oficial del CEN.
+Es un proyecto independiente; no es una herramienta operacional ni una publicación oficial del CEN.

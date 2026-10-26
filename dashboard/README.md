@@ -1,8 +1,8 @@
 # Demostración pública del dashboard
 
-Esta aplicación reproduce la estructura de cuatro vistas del explorador original, pero se alimenta exclusivamente de ejemplos sintéticos generados por `data_access.py`. No carga archivos de `data/`, no importa código de entrenamiento y no consulta la API del CEN.
+Preparé esta aplicación para demostrar la estructura de cuatro vistas del explorador. Los ejemplos sintéticos deterministas se generan en `data_access.py`; la aplicación no carga archivos de `data/`, no importa código de entrenamiento ni consulta la API del CEN.
 
-Las fechas, valores, perfiles y métricas que aparecen en pantalla son ficticios. No deben interpretarse como observaciones, feriados reales, errores ni resultados del estudio de 2024–2025.
+Las fechas, valores, perfiles y métricas son ficticios. No representan observaciones, feriados reales, errores ni resultados del estudio de 2024–2025.
 
 ## Ejecutar
 
