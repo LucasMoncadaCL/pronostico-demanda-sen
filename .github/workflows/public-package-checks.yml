@@ -1,0 +1,37 @@
+name: Public package checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repository only
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+
+      - name: Install Python 3.11
+        run: uv python install 3.11
+
+      - name: Install public project dependencies
+        run: uv sync --locked --python 3.11 --extra dashboard --extra modeling --extra dev
+
+      - name: Run synthetic unit tests
+        run: uv run --locked --no-sync --python 3.11 python -B -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Lint dashboard, tests, and public-tree check
+        run: uv run --locked --no-sync --python 3.11 ruff check dashboard tests scripts
+
+      - name: Verify public repository contents
+        run: uv run --locked --no-sync --python 3.11 python scripts/verify_public_tree.py
